@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ProFynd" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Text1" >
+        <item name="android:fontFamily">@font/poppins_sb</item>
+
+    </style >
+    <style name="Theme.Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/SecondCol</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="Text2" >
+        <item name="android:fontFamily">@font/coiny_font</item>
+
+    </style >
+    <style name="Text3" >
+        <item name="android:fontFamily">@font/coiny_font</item>
+        <item name="android:textColor">@color/PrimCol</item>
+    </style >
+    <style name="clickedButton">
+        <item name="android:background">@drawable/button_backround</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:font">@font/coiny_font</item>
+        <item name="android:padding">16dp</item>
+    </style>
+</resources>

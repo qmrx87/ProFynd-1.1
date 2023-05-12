@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "103510513209",
+    "project_id": "profynd-2cpi",
+    "storage_bucket": "profynd-2cpi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103510513209:android:12d54fd2517ac3e737dfe8",
+        "android_client_info": {
+          "package_name": "com.example.profynd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103510513209-ik6beo85vgms2nj1b6qpg92pt7sa31dc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbGedv_nhwj1pK4c0NPzdaKxeIGkKuyls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103510513209-ik6beo85vgms2nj1b6qpg92pt7sa31dc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
