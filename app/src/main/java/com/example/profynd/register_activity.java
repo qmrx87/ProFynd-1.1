@@ -189,7 +189,7 @@ public class register_activity extends AppCompatActivity {
                     nameEditTxt.setError("Valid name format is required (letters and spaces only)!");
                     nameEditTxt.requestFocus();
                     progressBar.setVisibility(View.INVISIBLE);
-                }else if(!name.isEmpty()){
+                }else if(TextUtils.isEmpty(name)){
                     nameEditTxt.setError("Full name is required!");
                     nameEditTxt.requestFocus();
                     progressBar.setVisibility(View.INVISIBLE);
