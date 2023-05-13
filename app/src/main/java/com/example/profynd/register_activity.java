@@ -80,7 +80,14 @@ public class register_activity extends AppCompatActivity {
 
         fstore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        getLastLocation();
+
+       //take location
+        mLocationInput = findViewById(R.id.localisation1);
+        mLocationInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getLastLocation();
+            }});
         registerUser();
         //open sign_in Layout
         TextView sign_in = findViewById(R.id.signin);
@@ -343,10 +350,7 @@ public class register_activity extends AppCompatActivity {
     private void getLastLocation() {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        mLocationInput = findViewById(R.id.localisation1);
-        mLocationInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+
                 if (ContextCompat.checkSelfPermission(register_activity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     mFusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                         @SuppressLint("SetTextI18n")
@@ -388,8 +392,7 @@ public class register_activity extends AppCompatActivity {
                     askPermission();
                 }
 
-            }
-        });
+
 
 
 

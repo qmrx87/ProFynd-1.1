@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProFynd">
         <activity
+            android:name=".Add_post_activity"
+            android:exported="false" />
+        <activity
             android:name=".OnboardingScreensActivity"
             android:exported="false" />
         <activity

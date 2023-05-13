@@ -222,6 +222,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/mobile"
+        android:indeterminateDrawable="@drawable/custom_progress_bar"
         android:layout_centerInParent="true"
         android:visibility="visible" />
         </RelativeLayout>

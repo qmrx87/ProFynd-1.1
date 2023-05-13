@@ -10,7 +10,7 @@
 
         <gradient
             android:endColor="@color/PrimCol"
-            android:centerColor="#CD8DAB"
+            android:centerColor="@color/SecondCol"
             android:startColor="@color/PrimCol"
             android:useLevel="false"/>
     </shape>

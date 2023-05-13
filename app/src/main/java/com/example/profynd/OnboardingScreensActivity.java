@@ -67,18 +67,18 @@ public class OnboardingScreensActivity extends AppCompatActivity {
         List<OnboardingItemModel> onboardingItemModels = new ArrayList<OnboardingItemModel>();
 
         OnboardingItemModel item1 = new OnboardingItemModel();
-        item1.setTitle("Whoah, Welcome!");
-        item1.setDescription("Welcome to ProFynd! hats off for making a great choice ");
+        item1.setTitle("Discover Expert Tutors");
+        item1.setDescription("Find the perfect tutor to help you achieve your goals with ProFynd");
         item1.setImage(R.drawable.welcomepage1);
 
         OnboardingItemModel item2 = new OnboardingItemModel();
-        item2.setTitle("Find Tutors");
-        item2.setDescription("You can always find the best tutors in your area");
+        item2.setTitle("Study any subject");
+        item2.setDescription("Whether you need help with math, science, or language arts, ProFynd has the perfect tutor for you");
         item2.setImage(R.drawable.welcomepage2);
 
         OnboardingItemModel item3 = new OnboardingItemModel();
-        item3.setTitle("Any Field ?!");
-        item3.setDescription("You can learn any subject , any field with the tutor of your choice");
+        item3.setTitle("Personalized Learning Experience");
+        item3.setDescription("Experience personalized learning like never before with ProFynd. Our expert tutors work with you one-on-one to provide customized support and guidance tailored to your unique learning style");
         item3.setImage(R.drawable.welcomepage3);
 
         onboardingItemModels.add(item1);
