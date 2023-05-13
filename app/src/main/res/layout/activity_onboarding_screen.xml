@@ -4,24 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/SecondCol"
     tools:context=".OnboardingScreensActivity">
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/buttonOnboardingAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
         android:textSize="15sp"
+        android:background="@drawable/button_backround"
         android:textColor="@color/white"
         app:cornerRadius="20dp"
+        android:theme="@style/Theme.ProFynd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onboardingViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+
+        />
 
     <LinearLayout
         android:id="@+id/layoutOnboardingIndicators"

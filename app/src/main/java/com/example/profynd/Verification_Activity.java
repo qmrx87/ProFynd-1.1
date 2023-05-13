@@ -45,7 +45,6 @@ public class Verification_Activity extends AppCompatActivity {
 
 
         verificationAnimation.playAnimation();
-        Verification();
 
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +53,8 @@ public class Verification_Activity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         if (user.isEmailVerified()) {
-                            startActivity(new Intent(getApplicationContext(), OnboardingScreensActivity.class));
+                            Intent intent = new Intent(Verification_Activity.this, OnboardingScreensActivity.class);
+                            startActivity(intent);
                             finish();
                         } else
                             Toast.makeText(Verification_Activity.this, "Please verify your account and try again", Toast.LENGTH_SHORT).show();
@@ -64,15 +64,4 @@ public class Verification_Activity extends AppCompatActivity {
         });
 
     }
-            private void Verification () {
-
-                user = FirebaseAuth.getInstance().getCurrentUser();
-                boolean b = false;
-                while (!b) {
-                    if (user != null) {
-                        user.sendEmailVerification();
-                        b = true;
-                    }
-                }
-            }
-        }
+}

@@ -267,6 +267,7 @@ public class register_activity extends AppCompatActivity {
                                                     user.sendEmailVerification();
                                                     Intent intent = new Intent(register_activity.this,Verification_Activity.class);
                                                     startActivity(intent);
+                                                    finish();
                                                 }
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -22,15 +23,15 @@ public class OnboardingScreensActivity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapter;
     private LinearLayout layoutOnboardingIndicators;
-    private MaterialButton buttonOnboardingAction;
+  private Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_onboarding_screens);
+        setContentView(R.layout.activity_onboarding_screen);
 
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
-        buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
+        next=findViewById(R.id.buttonOnboardingAction);
         setupOnboardingItems();
 
         ViewPager2 onboardingViewPager = findViewById(R.id.onboardingViewPager);
@@ -47,13 +48,13 @@ public class OnboardingScreensActivity extends AppCompatActivity {
             }
         });
 
-        buttonOnboardingAction.setOnClickListener(new View.OnClickListener() {
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()) {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 } else {
-                    //startActivity(new Intent(getApplicationContext(),BottomNavigationActivity.class));
+                    startActivity(new Intent(getApplicationContext(), FeedActivity.class));
                     finish();
                 }
             }
@@ -67,17 +68,17 @@ public class OnboardingScreensActivity extends AppCompatActivity {
 
         OnboardingItemModel item1 = new OnboardingItemModel();
         item1.setTitle("Whoah, Welcome!");
-        item1.setDescription("Welcome to ProFynd! Discover the Best Tutors and Coaches in Your Area for Any Skill or Subject");
+        item1.setDescription("Welcome to ProFynd! hats off for making a great choice ");
         item1.setImage(R.drawable.welcomepage1);
 
         OnboardingItemModel item2 = new OnboardingItemModel();
-        item2.setTitle("Ask Mothers");
-        item2.setDescription("You can always post new questions related to your child, and you will get answers from experienced mothers!");
+        item2.setTitle("Find Tutors");
+        item2.setDescription("You can always find the best tutors in your area");
         item2.setImage(R.drawable.welcomepage2);
 
         OnboardingItemModel item3 = new OnboardingItemModel();
-        item3.setTitle("Smart Room ?!");
-        item3.setDescription("Discover our SmartRoom technology and be always close to your child");
+        item3.setTitle("Any Field ?!");
+        item3.setDescription("You can learn any subject , any field with the tutor of your choice");
         item3.setImage(R.drawable.welcomepage3);
 
         onboardingItemModels.add(item1);
@@ -120,9 +121,10 @@ public class OnboardingScreensActivity extends AppCompatActivity {
             }
         }
         if (index == onboardingAdapter.getItemCount() - 1) {
-            buttonOnboardingAction.setText("Start");
+            next.setText("Start");
         } else {
-            buttonOnboardingAction.setText("Next");
+            next.setText("Next");
         }
     }
 }
+
