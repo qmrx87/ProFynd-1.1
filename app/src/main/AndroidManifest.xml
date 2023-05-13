@@ -16,7 +16,7 @@
             android:name=".BottomNavigationActivity"
             android:exported="false" />
         <activity
-            android:name=".Add_post_activity"
+            android:name=".AddPostActivity"
             android:exported="false" />
         <activity
             android:name=".OnboardingScreensActivity"
@@ -34,7 +34,7 @@
             android:name=".register_activity"
             android:exported="false" />
         <activity
-            android:name=".login_activity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

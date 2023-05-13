@@ -1,17 +1,12 @@
 package com.example.profynd;
 
-import static androidx.constraintlayout.motion.widget.Debug.getLocation;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -94,7 +89,7 @@ public class register_activity extends AppCompatActivity {
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sign_in = new Intent(register_activity.this, login_activity.class);
+                Intent sign_in = new Intent(register_activity.this, LoginActivity.class);
                 startActivity(sign_in);
             }
         });

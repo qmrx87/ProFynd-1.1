@@ -1,6 +1,5 @@
 package com.example.profynd;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,15 +19,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-public class login_activity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private TextInputEditText mEmailInput,mPasswordInput;
     private CheckBox mRememberMeCheckbox;
     private Button mLoginButton;
@@ -45,14 +42,14 @@ public class login_activity extends AppCompatActivity implements View.OnClickLis
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sign_up = new Intent(login_activity.this , register_activity.class);
+                Intent sign_up = new Intent(LoginActivity.this , register_activity.class);
                 startActivity(sign_up);
             }
         });
         frgt_pswd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sign_up = new Intent(login_activity.this , Forgot_Password_Activity.class);
+                Intent sign_up = new Intent(LoginActivity.this , Forgot_Password_Activity.class);
                 startActivity(sign_up);
             }
         });
@@ -147,11 +144,11 @@ public class login_activity extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.e("invoked onboarding","Yes");
-                           Intent intent = new Intent(login_activity.this, BottomNavigationActivity.class);
+                           Intent intent = new Intent(LoginActivity.this, BottomNavigationActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(login_activity.this, "Email or Password is incorrect , Please check again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Email or Password is incorrect , Please check again", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
