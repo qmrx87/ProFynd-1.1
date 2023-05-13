@@ -35,7 +35,7 @@ public class BottomNavigationActivity extends AppCompatActivity  {
         user=mAuth.getCurrentUser();
         Task<DocumentSnapshot> type = fstore.collection("Users").document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
            String userType= documentSnapshot.getString("Type");
-            int menuResId = (userType.equals("student")) ? R.menu.stud_bottom_navigation : R.menu.prof_bottom_navigation;
+            int menuResId = (userType.equals("Student")) ? R.menu.stud_bottom_navigation : R.menu.prof_bottom_navigation;
             bottomNav.getMenu().clear();
             bottomNav.inflateMenu(menuResId);
         });
