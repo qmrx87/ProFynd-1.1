@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.profynd.MainActivity;
 import com.example.profynd.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -39,13 +40,22 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                finish();
+                if (isLoggedIn()) {
+                    startActivity(new Intent(SplashActivity.this, BottomNavigationActivity.class));
+                    finish();
+                }else{
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    finish();
+                }
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
         });
+    }
+    public boolean isLoggedIn() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        return auth.getCurrentUser() != null;
     }
 }
