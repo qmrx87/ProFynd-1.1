@@ -185,19 +185,22 @@ public class register_activity extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
 
                     return;
-                } else if(!name.matches("^[a-zA-Z]")){
-                    nameEditTxt.setError("Name valid format is required!");
+                } else if (!name.matches("^[a-zA-Z ]+$")) {
+                    nameEditTxt.setError("Valid name format is required (letters and spaces only)!");
+                    nameEditTxt.requestFocus();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }else if(!name.isEmpty()){
+                    nameEditTxt.setError("Full name is required!");
                     nameEditTxt.requestFocus();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
 
                     //regular expression to validate username
-                    if (!username.matches("^[a-zA-Z0-9._-]{3,}$")) {
-                        usernameEditTxt.setError("Please enter a valid username");
-                        usernameEditTxt.requestFocus();
-                        progressBar.setVisibility(View.INVISIBLE);
-
-                    } else
+                if (!username.matches("^[a-zA-Z0-9._-]{3,}$")) {
+                    usernameEditTxt.setError("Please enter a valid username (letters, numbers, '.', '_', or '-')");
+                    usernameEditTxt.requestFocus();
+                    progressBar.setVisibility(View.INVISIBLE);
+                } else
 
                         //email processing
                         if (TextUtils.isEmpty(email)) {
@@ -291,7 +294,8 @@ public class register_activity extends AppCompatActivity {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
                                                     Toast.makeText(register_activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    Log.e(" df.set(userInfor) Task", "Failure");
+                                                    progressBar.setVisibility(View.GONE);
+
                                                 }
                                             }); //pass our map to the fb document
                                         } else try {
@@ -300,14 +304,20 @@ public class register_activity extends AppCompatActivity {
 
                                         } catch (FirebaseAuthUserCollisionException e) {
                                             emailEditTxt.setError("Email is already registered , Please enter anotehr one");
+                                            progressBar.setVisibility(View.GONE);
                                         } catch (FirebaseAuthEmailException e) {
                                             emailEditTxt.setError("This Email is Banned/Used");
+                                            progressBar.setVisibility(View.GONE);
                                             task.getException().getMessage();
                                         } catch (FirebaseAuthInvalidUserException e) {
+                                            progressBar.setVisibility(View.GONE);
+
                                             e.getMessage();
                                         } catch (Exception e) {
                                             Log.e(TAG, "Exception e , task not successful");
                                             Toast.makeText(register_activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            progressBar.setVisibility(View.GONE);
+
                                         }
                                     }
                                 }

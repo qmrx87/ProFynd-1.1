@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class UserModel implements Serializable {
-    private String Name, Username, profilePictureUrl, bannerUrl, uid, bio;
-    private ArrayList<String> followers, following, posts, answers;
+    private String Name, Username, profilePictureUrl, bannerUrl, uid;
+    private ArrayList<String> posts;
     private int reputation;
 
     public int getReputation() {
@@ -18,11 +18,7 @@ public class UserModel implements Serializable {
         this.profilePictureUrl = profilePictureUrl;
         this.bannerUrl = bannerUrl;
         this.uid = uid;
-        this.bio = bio;
-        this.followers = followers;
-        this.following = following;
         this.posts = posts;
-        this.answers = answers;
         this.reputation = reputation;
     }
 
@@ -38,11 +34,7 @@ public class UserModel implements Serializable {
         this.profilePictureUrl = profilePictureUrl;
         this.bannerUrl = bannerUrl;
         this.uid = uid;
-        this.bio = bio;
-        this.followers = followers;
-        this.following = following;
         this.posts = posts;
-        this.answers = answers;
     }
 
 
@@ -50,13 +42,6 @@ public class UserModel implements Serializable {
         this.uid = uid;
     }
 
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
 
     public String getBannerUrl() {
         return bannerUrl;
@@ -96,20 +81,9 @@ public class UserModel implements Serializable {
         this.profilePictureUrl = profilePictureUrl;
     }
 
-    public ArrayList<String> getFollowers() {
-        return followers;
-    }
-
-    public ArrayList<String> getFollowing() {
-        return following;
-    }
-
     public ArrayList<String> getPosts() {
         return posts;
     }
 
-    public ArrayList<String> getAnswers() {
-        return answers;
-    }
 
 }

@@ -91,7 +91,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
 
         LottieAnimationView Demand;
         ImageView img;
-        TextView Title,Details,Username,Price,Location;
+        TextView Title,Username,Price,Location;
 
         private FirebaseAuth auth;
         private FirebaseUser user;

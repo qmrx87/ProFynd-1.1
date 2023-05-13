@@ -145,7 +145,7 @@ public class login_activity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                           Intent intent = new Intent(login_activity.this, OnboardingScreensActivity.class);
+                           Intent intent = new Intent(login_activity.this, BottomNavigationActivity.class);
                             startActivity(intent);
                             finish();
                         } else {

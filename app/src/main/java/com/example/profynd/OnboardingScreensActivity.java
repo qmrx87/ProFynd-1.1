@@ -14,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.profynd.adapter.OnboardingAdapter;
 import com.example.profynd.models.OnboardingItemModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class OnboardingScreensActivity extends AppCompatActivity {
                 if (onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()) {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 } else {
-                    startActivity(new Intent(getApplicationContext(), FeedActivity.class));
+                    startActivity(new Intent(getApplicationContext(), BottomNavigationActivity.class));
                     finish();
                 }
             }
