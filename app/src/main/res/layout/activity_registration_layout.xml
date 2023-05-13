@@ -23,12 +23,35 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rec_101"
                 android:src="@drawable/group_101" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/head_img"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginLeft="18dp"
+                android:hint="Full Name"
+                app:startIconDrawable="@drawable/user_circle"
 
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName"
+
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/head_img"
+        android:layout_below="@+id/name"
         android:layout_marginTop="8dp"
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
@@ -42,6 +65,7 @@
         android:id="@+id/UsernameEditTxt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:maxLength="16"
 
         />
 

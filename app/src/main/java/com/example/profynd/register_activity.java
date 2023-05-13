@@ -55,7 +55,7 @@ import java.util.Map;
 
 public class register_activity extends AppCompatActivity {
     private Button teacher, student, registerBtn;
-    TextInputEditText usernameEditTxt, emailEditTxt, pwEditTxt, mobEditTxt;
+    TextInputEditText nameEditTxt ,usernameEditTxt, emailEditTxt, pwEditTxt, mobEditTxt;
     private boolean tIsClicked, sIsClicked;
     FirebaseFirestore fstore;
     ProgressBar progressBar;
@@ -160,6 +160,7 @@ public class register_activity extends AppCompatActivity {
         emailEditTxt = findViewById(R.id.EmailEditTxt);
         pwEditTxt = findViewById(R.id.PasswordEditTxt);
         mobEditTxt = findViewById(R.id.MobileEditTxt);
+        nameEditTxt=findViewById(R.id.nameEditTxt);
         registerBtn = findViewById(R.id.SignUpButton);
         progressBar = findViewById(R.id.progressBar);
 
@@ -169,6 +170,7 @@ public class register_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = emailEditTxt.getText().toString().trim();
+                String name = nameEditTxt.getText().toString().trim();
                 String password = pwEditTxt.getText().toString().trim();
                 String username = usernameEditTxt.getText().toString().trim();
                 String mobile = mobEditTxt.getText().toString().trim();
@@ -183,7 +185,11 @@ public class register_activity extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
 
                     return;
-                } else
+                } else if(!name.matches("^[a-zA-Z]")){
+                    nameEditTxt.setError("Name valid format is required!");
+                    nameEditTxt.requestFocus();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
 
                     //regular expression to validate username
                     if (!username.matches("^[a-zA-Z0-9._-]{3,}$")) {
@@ -234,7 +240,11 @@ public class register_activity extends AppCompatActivity {
 
                         Toast.makeText(register_activity.this, "PLEASE Enter your Location in this format Country , City", Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.INVISIBLE);
-                    }else
+                    }else if(!Patterns.PHONE.matcher(mobile).matches()){
+                        mobEditTxt.setError("Valid format of mobile number is required");
+                        mobEditTxt.requestFocus();
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
                     if(CheckExistingUser(username))
 
                     //Start the Registration
@@ -254,12 +264,13 @@ public class register_activity extends AppCompatActivity {
 
                                             Map<String, Object> userInfor = new HashMap<>(); //represents key, value
                                             //can be used to categorise our data and organize it
+                                            userInfor.put("Name", name);
                                             userInfor.put("Username", username);
                                             userInfor.put("Email", email); //email categorie
                                             userInfor.put("Mobile", mobile);
                                             userInfor.put("Location", localisation);
                                             userInfor.put("Uid", user.getUid());
-                                            userInfor.put("Type", account_type);
+                                            userInfor.put("Type", (account_type)?"Student":"Tutor");
                                             userInfor.put("Reputation", 0);
                                             userInfor.put("ProfilePictureUrl", null);
 
