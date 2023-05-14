@@ -1,10 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ProFynd" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.ProFynd" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
         <item name="colorAccent">@color/teal_200</item>
+        <item name="android:windowAnimationStyle">@style/animation</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="Text1" >
@@ -18,6 +19,11 @@
     </style>
     <style name="Text2" >
         <item name="android:fontFamily">@font/coiny_font</item>
+
+    </style >
+    <style name="animation" >
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
 
     </style >
     <style name="Text3" >

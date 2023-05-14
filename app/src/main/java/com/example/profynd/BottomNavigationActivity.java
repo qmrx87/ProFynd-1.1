@@ -22,6 +22,7 @@ import com.example.profynd.navigation_fragments.SettingsFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +38,7 @@ public class BottomNavigationActivity extends AppCompatActivity  {
     String userType;
     UserModel currUser ;
     ImageView formation_Img ;
-    Button add;
+    BottomNavigationItemView add;
     BottomNavigationView bottomNav ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,29 +48,32 @@ public class BottomNavigationActivity extends AppCompatActivity  {
         //Set the menu of bottom navigation
         bottomNav = findViewById(R.id.bottom_navigation_layout);
         user=mAuth.getCurrentUser();
-        Task<DocumentSnapshot> type = fstore.collection("Users").document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
+         fstore.collection("Users").document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
            userType= documentSnapshot.getString("Type");
             int menuResId = (userType.equals("Student")) ? R.menu.stud_bottom_navigation : R.menu.prof_bottom_navigation;
             bottomNav.getMenu().clear();
             bottomNav.inflateMenu(menuResId);
+                     if (userType.equals("Student")) {
+                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                 new HomeFragment()).commit();//Here we're setting the home fragment as default fragment for the student
+                     }else {
+                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                 new ProfileFragment()).commit();
+                         //start AddPostActivity class
+                         add = findViewById(R.id.nav_add);
+                         add.setOnClickListener(new View.OnClickListener() {
+                             @Override
+                             public void onClick(View view) {
+                                 startActivity(new Intent(getApplicationContext(), AddPostActivity.class));
+                             }
+                         });
+                     }//Here we're setting the profile fragment as default fragment for the tutor
         });
         //Here we're setting the home fragment as default fragment
-        if (userType.equals("Student")) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();//Here we're setting the home fragment as default fragment for the student
-        }else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new ProfileFragment()).commit();//Here we're setting the profile fragment as default fragment for the tutor
 
-            //start AddPostActivity class
-            add = findViewById(R.id.nav_add);
-            add.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(getApplicationContext(), AddPostActivity.class));
-                }
-            });
-        }
+
+
+
 
         //get current user model
         mAuth = FirebaseAuth.getInstance();
