@@ -4,73 +4,77 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class UserModel implements Serializable {
-    private String Name, Username, profilePictureUrl, bannerUrl, uid;
-    private ArrayList<String> posts;
+    private String email;
+    private ArrayList<String> feed;
+    private String location;
+    private String mobile;
+    private String name;
+    private String profilePictureUrl;
     private int reputation;
+    private String type;
+    private String uid;
+    private String username;
+    private ArrayList<String> demands;
+    private boolean isAdmin;
 
-    public int getReputation() {
-        return reputation;
+    public UserModel() {
+        // Empty constructor required for Firebase
     }
 
-    public UserModel(String name, String username, String profilePictureUrl, String bannerUrl, String uid, String bio, ArrayList<String> followers, ArrayList<String> following, ArrayList<String> posts, ArrayList<String> answers, int reputation) {
-        Name = name;
-        Username = username;
+    public UserModel(String email, ArrayList<String> feed, String location, String mobile, String name, String profilePictureUrl, int reputation, String type, String uid, String username, ArrayList<String> demands, boolean isAdmin) {
+        this.email = email;
+        this.feed = feed;
+        this.location = location;
+        this.mobile = mobile;
+        this.name = name;
         this.profilePictureUrl = profilePictureUrl;
-        this.bannerUrl = bannerUrl;
-        this.uid = uid;
-        this.posts = posts;
         this.reputation = reputation;
-    }
-
-    public UserModel(String Name, String Username, String profilePictureUrl) {
-        this.Name = Name;
-        this.profilePictureUrl = profilePictureUrl;
-        this.Username = Username;
-    }
-
-    public UserModel(String name, String username, String profilePictureUrl, String bannerUrl, String uid, String bio, ArrayList<String> followers, ArrayList<String> following, ArrayList<String> posts, ArrayList<String> answers) {
-        Name = name;
-        Username = username;
-        this.profilePictureUrl = profilePictureUrl;
-        this.bannerUrl = bannerUrl;
+        this.type = type;
         this.uid = uid;
-        this.posts = posts;
+        this.username = username;
+        this.demands = demands;
+        this.isAdmin = isAdmin;
     }
 
-
-    public UserModel(String uid) {
-        this.uid = uid;
+    // Getters and setters
+    public String getEmail() {
+        return email;
     }
 
-
-    public String getBannerUrl() {
-        return bannerUrl;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUid() {
-        return uid;
+    public ArrayList<String> getFeed() {
+        return feed;
     }
 
-    public void setBannerUrl(String bannerUrl) {
-        this.bannerUrl = bannerUrl;
+    public void setFeed(ArrayList<String> feed) {
+        this.feed = feed;
     }
 
-    public UserModel(){};
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
-    }
-
-    public String getUsername() {
-        return Username;
-    }
-
-    public void setUsername(String username) {
-        Username = username;
+        this.name = name;
     }
 
     public String getProfilePictureUrl() {
@@ -81,9 +85,51 @@ public class UserModel implements Serializable {
         this.profilePictureUrl = profilePictureUrl;
     }
 
-    public ArrayList<String> getPosts() {
-        return posts;
+    public int getReputation() {
+        return reputation;
     }
 
+    public void setReputation(int reputation) {
+        this.reputation = reputation;
+    }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public ArrayList<String> getDemands() {
+        return demands;
+    }
+
+    public void setDemands(ArrayList<String> demands) {
+        this.demands = demands;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
 }

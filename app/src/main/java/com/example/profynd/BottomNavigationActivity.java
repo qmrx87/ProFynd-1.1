@@ -69,7 +69,7 @@ public class BottomNavigationActivity extends AppCompatActivity  {
                          });
                      }//Here we're setting the profile fragment as default fragment for the tutor
         });
-        //Here we're setting the home fragment as default fragment
+
 
 
 

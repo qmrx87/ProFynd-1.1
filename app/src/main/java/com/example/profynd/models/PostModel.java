@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class PostModel implements Serializable, Parcelable {
     private String publisher,Username, title,Formation_img ,body,postid,publisherPic,location;
     private Timestamp Date;
-    private int Available_places,Price, reportsCount;
+    private int demandsCount,Price, reportsCount;
     private ArrayList<String> tags, demands;
 
 
@@ -27,7 +27,7 @@ public class PostModel implements Serializable, Parcelable {
         this.Price=price;
         Date = date;
         this.publisherPic = publisherPic;
-        this.Available_places = placesCount;
+        this.demandsCount = demands.size();
         this.Formation_img = formation_img;
         this.demands=demands;
         this.tags = tags;
@@ -85,6 +85,14 @@ public class PostModel implements Serializable, Parcelable {
 
     public ArrayList<String> getTags() {
         return tags;
+    }
+
+    public int getDemandsCount() {
+        return demandsCount;
+    }
+
+    public void setDemandsCount(int demandsCount) {
+        this.demandsCount = demandsCount;
     }
 
     public void setTags(ArrayList<String> tags) {

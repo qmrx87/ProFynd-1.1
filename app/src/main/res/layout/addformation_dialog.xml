@@ -22,29 +22,31 @@
         android:layout_below="@id/dialog_txt"
         android:gravity="center_horizontal">
 
-        <com.google.android.material.chip.ChipGroup
-
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Collective"/>
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Action"
+            <RadioButton
+                android:id="@+id/individual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Individual"/>
 
-        </com.google.android.material.chip.ChipGroup>
+            <RadioButton
+                android:id="@+id/collective"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collective"/>
+
+        </RadioGroup>
 
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/button_places"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -87,5 +89,16 @@
             />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/okay"
+        style="@style/clickedButton"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_places"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button_backround"
+        android:padding="18dp"
+        android:text="OKAY" />
 
 </RelativeLayout>
