@@ -14,14 +14,13 @@ public class UserModel implements Serializable {
     private String type;
     private String uid;
     private String username;
-    private ArrayList<String> demands;
     private boolean isAdmin;
 
     public UserModel() {
         // Empty constructor required for Firebase
     }
 
-    public UserModel(String email, ArrayList<String> feed, String location, String mobile, String name, String profilePictureUrl, int reputation, String type, String uid, String username, ArrayList<String> demands, boolean isAdmin) {
+    public UserModel(String email, ArrayList<String> feed, String location, String mobile, String name, String profilePictureUrl, int reputation, String type, String uid, String username, boolean isAdmin) {
         this.email = email;
         this.feed = feed;
         this.location = location;
@@ -32,7 +31,6 @@ public class UserModel implements Serializable {
         this.type = type;
         this.uid = uid;
         this.username = username;
-        this.demands = demands;
         this.isAdmin = isAdmin;
     }
 
@@ -115,14 +113,6 @@ public class UserModel implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public ArrayList<String> getDemands() {
-        return demands;
-    }
-
-    public void setDemands(ArrayList<String> demands) {
-        this.demands = demands;
     }
 
     public boolean isAdmin() {

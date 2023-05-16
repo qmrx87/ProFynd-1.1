@@ -49,6 +49,7 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0@aar") {
         transitive = true
     }
+    implementation 'com.google.firebase:firebase-storage:20.2.0'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
