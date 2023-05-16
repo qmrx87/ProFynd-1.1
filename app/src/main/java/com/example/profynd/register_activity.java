@@ -164,6 +164,7 @@ public class register_activity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 String email = emailEditTxt.getText().toString().trim();
                 String name = nameEditTxt.getText().toString().trim();
                 String password = pwEditTxt.getText().toString().trim();
@@ -255,6 +256,7 @@ public class register_activity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
+
                                             //get the current user
                                             user = auth.getCurrentUser();
 

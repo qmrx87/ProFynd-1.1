@@ -2,6 +2,7 @@ package com.example.profynd.navigation_fragments;
 
 import static android.view.View.VISIBLE;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,16 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.profynd.R;
 import com.example.profynd.adapter.PostAdapter;
 import com.example.profynd.interfaces.PostsOnItemClickListner;
 import com.example.profynd.models.PostModel;
+import com.example.profynd.models.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -39,16 +43,19 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.nex3z.notificationbadge.NotificationBadge;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class HomeFragment extends Fragment implements PostsOnItemClickListner {
     private SwipeRefreshLayout refresh;
     private ProgressBar progressBar;
@@ -70,47 +77,32 @@ public class HomeFragment extends Fragment implements PostsOnItemClickListner {
     private boolean isLastItemPaged;
     private boolean isScrolling;
     private DocumentSnapshot lastVisible;
+    private HashMap<String, Long> tagsMap = new HashMap<String, Long>();
 
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        parentHolder = inflater.inflate(R.layout.fragment_home, container, false);
+        refresh = parentHolder.findViewById(R.id.homeRefreshLayout);
+        progressBar = parentHolder.findViewById(R.id.homeProgressBar);
+        recyclerView = parentHolder.findViewById(R.id.recview);
+        notificationBadge = parentHolder.findViewById(R.id.badge);
+
+        linearLayoutManager = new LinearLayoutManager(getContext());
+
+
+        Main();
+
+
+        return parentHolder ;
+
     }
+
+
     public void Main(){
         auth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -175,7 +167,7 @@ public class HomeFragment extends Fragment implements PostsOnItemClickListner {
            @Override
            public void onSuccess(DocumentSnapshot documentSnapshot) {
                current_location=  documentSnapshot.getString("Location");
-               fstore.collection("Posts").whereEqualTo("Location",current_location).limit(10)
+               fstore.collection("Posts").whereEqualTo("location",current_location).limit(10)
                        .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                    @Override
                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -188,6 +180,48 @@ public class HomeFragment extends Fragment implements PostsOnItemClickListner {
                });
            }
        });
+
+        //adding recommended
+        List<Map.Entry<String, Long>> list = new LinkedList<>(tagsMap.entrySet());
+
+        // Sorting the list based on values
+        list.sort((o1, o2) -> false ? o1.getValue().compareTo(o2.getValue()) == 0
+                ? o1.getKey().compareTo(o2.getKey())
+                : o1.getValue().compareTo(o2.getValue()) : o2.getValue().compareTo(o1.getValue()) == 0
+                ? o2.getKey().compareTo(o1.getKey())
+                : o2.getValue().compareTo(o1.getValue()));
+        //sorting the map
+        tagsMap = list.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, LinkedHashMap::new));
+        ArrayList<String> tags = new ArrayList<>(tagsMap.keySet());
+
+        for (int i = 0; i < 2; i++) {
+            try {
+                fstore.collection("Posts").whereArrayContains("tags", tags.get(i)).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            PostModel post = document.toObject(PostModel.class);
+                            DocumentReference feedRef = userInfos.collection("Feed").document(post.getPostid());
+                            feedRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (!documentSnapshot.exists()) {
+                                        feedRef.set(post);
+                                        feedRef.update("priority", 1);
+                                    }
+                                    else if(documentSnapshot.getLong("priority").intValue()>1)
+                                    {
+                                        feedRef.update("priority", 1);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }catch (IndexOutOfBoundsException e){
+                Log.e("Some error has occured:", e.getMessage());
+            }
+        }
 
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -275,6 +309,8 @@ public class HomeFragment extends Fragment implements PostsOnItemClickListner {
                         }
                     };
                     recyclerView.addOnScrollListener(onScrollListener);
+                }else{
+                    Toast.makeText(getContext(), "NOT SUCCESSFUL", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -283,29 +319,23 @@ public class HomeFragment extends Fragment implements PostsOnItemClickListner {
     }
 
     private void BuildRecyclerView() {
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        parentHolder = inflater.inflate(R.layout.fragment_home, container, false);
-
-        refresh = parentHolder.findViewById(R.id.homeRefreshLayout);
-        progressBar = parentHolder.findViewById(R.id.homeProgressBar);
         recyclerView = parentHolder.findViewById(R.id.recview);
-        notificationBadge = parentHolder.findViewById(R.id.badge);
-
-        linearLayoutManager = new LinearLayoutManager(getContext());
-
-
-        Main();
-
-
-        return parentHolder ;
-
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new PostAdapter(PostsDataHolder, this);
+        recyclerView.setAdapter(adapter);
     }
+
+    private void Refresh(ArrayList<String> likes, int position) {
+        if (likes != null && position >= 0) {
+            adapter.notifyItemChanged(position);
+            adapter.notifyDataSetChanged();
+            BuildRecyclerView();
+        }
+    }
+
+
+
+
 
     @Override
     public void onPictureClick(int position) {

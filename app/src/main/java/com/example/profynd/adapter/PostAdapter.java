@@ -57,7 +57,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-
         Glide.with(context).load(PostsHolder.get(position).getPublisherPic()).into(holder.img);
         holder.Title.setText(PostsHolder.get(position).getTitle());
         holder.Username.setText("@"+PostsHolder.get(position).getUsername());
@@ -65,20 +64,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
         holder.Price.setText(PostsHolder.get(position).getPrice()+"DA");
     }
 
-    private void RunCheckForLikes(PostModel post, LottieAnimationView lottieAnimationView) {
-        ArrayList<String> demands = post.getDemands();
 
-        if (demands.contains(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-        {
-            lottieAnimationView.setProgress(1);
-            lottieAnimationView.setTag("Applied");
-        }
-        else
-        {
-            lottieAnimationView.setProgress(0);
-            lottieAnimationView.setTag("Apply");
-        }
-    }
 
 
 
@@ -172,26 +158,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
                                 adapter.notifyItemRemoved(position);
                                 //DeleteLikes(postModel, "Likes");
                                 DeleteFromFeed(postModel);
-                                DocumentReference postRef = FirebaseFirestore.getInstance().collection("Posts").document(postModel.getPostid());
-                                CollectionReference answers =FirebaseFirestore.getInstance().collection("Posts").
-                                        document(postModel.getPostid()).collection("Answers");
-                                answers.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                                document.getReference().delete();
-                                            }
-                                            postRef.delete();
-                                            DocumentReference userRef = FirebaseFirestore.getInstance().collection("Users")
-                                                    .document(user.getUid());
-                                            userRef.update("posts", FieldValue.arrayRemove(postModel.getPostid()));
-                                            Toast.makeText(view.getContext(), "Post deleted", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(view.getContext(), "Some error occurred try again later", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
                                 Toast.makeText(view.getContext(), "Delete", Toast.LENGTH_SHORT).show();
                                 b = true;
                             }

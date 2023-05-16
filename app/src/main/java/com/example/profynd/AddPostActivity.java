@@ -3,6 +3,9 @@ package com.example.profynd;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ActivityNavigatorDestinationBuilderKt;
+
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -87,6 +90,8 @@ public class AddPostActivity extends AppCompatActivity {
             mathematics,physics,science,languages ,other;
 
     private static final int PICK_IMAGE_REQUEST = 1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -215,7 +220,7 @@ public class AddPostActivity extends AppCompatActivity {
 
                             if (mImageUri != null) {
                                 progressbarokay.setVisibility(View.VISIBLE);
-                                uploadImageToStorage(mImageUri);
+                                uploadImageToFirestore(mImageUri);
 
                             } else {
                                 progressbarokay.setVisibility(View.VISIBLE);
@@ -236,7 +241,7 @@ public class AddPostActivity extends AppCompatActivity {
                                 // If the user has selected an image, upload it to Firebase Storage before hiding the dialog
                                 if (mImageUri != null) {
                                     progressbarokay.setVisibility(View.VISIBLE);
-                                    uploadImageToStorage(mImageUri);
+                                    uploadImageToFirestore(mImageUri);
                                 } else {
                                     progressbarokay.setVisibility(View.VISIBLE);
                                     performValidation();
@@ -269,25 +274,42 @@ public class AddPostActivity extends AppCompatActivity {
 
     }
 
-    // Override the onActivityResult method to handle the result of the file picker
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            mImageUri = data.getData();
-            // Update the addimage button text to show the selected image file name
-            addimage.setText(mImageUri.getLastPathSegment());
+            Uri selectedImageUri = data.getData();
+
+            // Launch the image cropper
+            CropImage.activity(selectedImageUri)
+                    .setAspectRatio(16, 9)  // Set your desired custom ratio here
+                    .setFixAspectRatio(true) // Ensure the aspect ratio is maintained during cropping
+                    .start(this);
+        } else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            // Handle the result of the crop activity
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                // Get the cropped image URI
+                Uri croppedImageUri = result.getUri();
+
+                // Upload the cropped image to Firestore
+                uploadImageToFirestore(croppedImageUri);
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                // Handle crop error
+                Exception error = result.getError();
+                Log.e("TAG", "Error cropping image", error);
+            }
         }
     }
 
-    // upload the selected image to Firebase Storage
-    private void uploadImageToStorage(Uri imageUri) {
+    // Upload the cropped image to Firestore
+    private void uploadImageToFirestore(Uri croppedImageUri) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("formationImages/" + UUID.randomUUID().toString());
 
-        storageRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        storageRef.putFile(croppedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // Get the download URL of the uploaded image and do something with it, such as store it in a database
+                // Get the download URL of the uploaded image and do something with it, such as store it in a Firestore document
                 storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -307,7 +329,6 @@ public class AddPostActivity extends AppCompatActivity {
         });
     }
 
-    //upload post
 
 
     DocumentReference ref = FirebaseFirestore.getInstance().collection("Posts").document();
@@ -325,12 +346,12 @@ public class AddPostActivity extends AppCompatActivity {
         data.put("Formation_img", imageUrl);
         data.put("Name", tutorName);
         data.put("Places", places);
-        data.put("Price",priceString);
+        data.put("Price",price);
         data.put("Username", tutorUsername);
         data.put("body", body);
         data.put("demands", null);
         data.put("demandsCount", 0);
-        data.put("lcoation", tutorLocation);
+        data.put("location", tutorLocation);
         data.put("postid", postId);
         data.put("publisher", onlineUserId);
         data.put("PublisherPic",downloadUrl);
@@ -347,7 +368,7 @@ public class AddPostActivity extends AppCompatActivity {
         postData.put("postid", postId);
         postData.put("Formation_img",imageUrl);
         data.put("demands", null);
-        postData.put("Price",priceString);
+        postData.put("Price",price);
         postData.put("demandsCount", 0);
         CollectionReference formationsRef = FirebaseFirestore.getInstance()
                 .collection("Users").document(onlineUserId).collection("Formations");
