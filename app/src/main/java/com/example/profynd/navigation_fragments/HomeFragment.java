@@ -19,10 +19,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.profynd.R;
+import com.example.profynd.SettingsActivity;
 import com.example.profynd.adapter.PostAdapter;
 import com.example.profynd.interfaces.PostsOnItemClickListner;
 import com.example.profynd.models.PostModel;
@@ -78,7 +81,7 @@ public class HomeFragment extends Fragment implements PostsOnItemClickListner {
     private boolean isScrolling;
     private DocumentSnapshot lastVisible;
     private HashMap<String, Long> tagsMap = new HashMap<String, Long>();
-
+    private ImageButton settingsBtn ;
 
 
 
@@ -90,8 +93,7 @@ public class HomeFragment extends Fragment implements PostsOnItemClickListner {
         refresh = parentHolder.findViewById(R.id.homeRefreshLayout);
         progressBar = parentHolder.findViewById(R.id.homeProgressBar);
         recyclerView = parentHolder.findViewById(R.id.recview);
-        notificationBadge = parentHolder.findViewById(R.id.badge);
-
+        settingsBtn = parentHolder.findViewById(R.id.settingsBtn);
         linearLayoutManager = new LinearLayoutManager(getContext());
 
 
@@ -145,6 +147,13 @@ public class HomeFragment extends Fragment implements PostsOnItemClickListner {
 //                FetchPosts();
             }
         });
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+            }
+        });
+
 
     }
     private void setFeed() {

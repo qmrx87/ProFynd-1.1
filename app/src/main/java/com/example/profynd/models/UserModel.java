@@ -3,34 +3,36 @@ package com.example.profynd.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserModel implements Serializable {
+public class UserModel implements Serializable  {
     private String email;
     private ArrayList<String> feed;
     private String location;
     private String mobile;
-    private String name;
+    private String Name;
     private String profilePictureUrl;
     private int reputation;
     private String type;
     private String uid;
-    private String username;
+    private String Username;
+    private String bio;
     private boolean isAdmin;
 
     public UserModel() {
         // Empty constructor required for Firebase
     }
 
-    public UserModel(String email, ArrayList<String> feed, String location, String mobile, String name, String profilePictureUrl, int reputation, String type, String uid, String username, boolean isAdmin) {
+    public UserModel(String email, ArrayList<String> feed, String location, String mobile, String name, String profilePictureUrl, int reputation, String type, String uid, String username,String bio, boolean isAdmin) {
         this.email = email;
         this.feed = feed;
         this.location = location;
         this.mobile = mobile;
-        this.name = name;
+        this.Name = name;
         this.profilePictureUrl = profilePictureUrl;
         this.reputation = reputation;
         this.type = type;
         this.uid = uid;
-        this.username = username;
+        this.Username = username;
+        this.bio=bio;
         this.isAdmin = isAdmin;
     }
 
@@ -68,11 +70,11 @@ public class UserModel implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public String getProfilePictureUrl() {
@@ -103,16 +105,24 @@ public class UserModel implements Serializable {
         return uid;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
     public void setUid(String uid) {
         this.uid = uid;
     }
 
     public String getUsername() {
-        return username;
+        return Username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.Username = username;
     }
 
     public boolean isAdmin() {

@@ -1,66 +1,160 @@
 package com.example.profynd.navigation_fragments;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.example.profynd.EditProfileActivity;
 import com.example.profynd.R;
+import com.example.profynd.models.UserModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private UserModel userModel;
+    private ArrayList<String> followers, followings;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private FirebaseFirestore fstore;
+    private StorageReference storageReference;
+    private Uri resultUri;
+    private CollectionReference requestRef;
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private TextView username, name, bio, reputationText;
+    private ImageButton editProfile;
+    private CollapsingToolbarLayout toolbarLayout;
+    private CircleImageView profileImg;
+    private ProgressDialog loader;
+    ImageView star;
 
+    View Holder;
+
+    private boolean loadbanner = true;
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Holder = inflater.inflate(R.layout.fragment_profile,container,false);
+
+
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        fstore = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference().child("profileImages");
+
+        star=Holder.findViewById(R.id.replyStarBtn);
+        username = Holder.findViewById(R.id.usernameTxt);
+        name = Holder.findViewById(R.id.profileName);
+        reputationText = Holder.findViewById(R.id.reputationText);
+        bio = Holder.findViewById(R.id.bioText);
+        editProfile = Holder.findViewById(R.id.editProfile);
+        profileImg = Holder.findViewById(R.id.profileImg);
+        loader = new ProgressDialog(getActivity());
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+
+        DocumentReference df = fstore.collection("Users").document(user.getUid());
+
+
+
+
+        GetCurrentUserModelAndSetInfo();
+
+        return Holder;
+    }
+    private void GetCurrentUserModelAndSetInfo()
+    {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        db.collection("Users").document(userId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                // Retrieve the data and map it to UserModel object
+                                UserModel userModel = document.toObject(UserModel.class);
+                                if (userModel!=null) {
+                                    //set username
+                                    username.setText(userModel.getUsername());
+
+                                    if (userModel.getProfilePictureUrl() != null) { //set profile pic
+                                        String downloadUrl = userModel.getProfilePictureUrl();
+                                        Glide.with(ProfileFragment.this).load(downloadUrl).into(profileImg);
+                                    }
+
+                                    if (userModel.getName() != null) { //set name
+                                        name.setText(userModel.getName());
+                                    }
+                                    if (userModel.getBio() != null) { //set bio
+                                        bio.setText(userModel.getBio());
+                                    }
+                                    if (userModel.getType() != "Tutor") { //set bio
+                                        reputationText.setVisibility(View.GONE);
+                                        star.setVisibility(View.GONE);
+                                    }else{
+                                        reputationText.setText(userModel.getReputation()+"");
+                                    }
+
+                                }
+
+                                // ...
+                            } else {
+                                // Handle the case when the document does not exist
+                            }
+                        } else {
+                            // Handle any errors
+                        }
+                    }
+                });
+
+
+    }
+    private void startLoader()
+    {
+        loader.setMessage("Updating banner...");
+        loader.setCanceledOnTouchOutside(false);
+        loader.show();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
-    }
+//TODO: add cancel banner
 }

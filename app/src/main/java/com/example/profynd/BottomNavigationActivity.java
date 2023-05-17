@@ -18,7 +18,6 @@ import com.example.profynd.models.UserModel;
 import com.example.profynd.navigation_fragments.HomeFragment;
 import com.example.profynd.navigation_fragments.NotificationFragment;
 import com.example.profynd.navigation_fragments.ProfileFragment;
-import com.example.profynd.navigation_fragments.SettingsFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -40,15 +39,19 @@ public class BottomNavigationActivity extends AppCompatActivity  {
     ImageView formation_Img ;
     BottomNavigationItemView add;
     BottomNavigationView bottomNav ;
+    private MenuItem Search ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
+
         //Set the menu of bottom navigation
         bottomNav = findViewById(R.id.bottom_navigation_layout);
+        Search =bottomNav.findViewById(R.id.nav_sr);
         user=mAuth.getCurrentUser();
-         fstore.collection("Users").document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
+        bottomNav.setOnItemSelectedListener(navListener);
+        fstore.collection("Users").document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
            userType= documentSnapshot.getString("Type");
             int menuResId = (userType.equals("Student")) ? R.menu.stud_bottom_navigation : R.menu.prof_bottom_navigation;
             bottomNav.getMenu().clear();
@@ -116,7 +119,6 @@ public class BottomNavigationActivity extends AppCompatActivity  {
 
 
 
-
     }
 
     private void CheckNetwork() {
@@ -147,7 +149,8 @@ public class BottomNavigationActivity extends AppCompatActivity  {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_sr:
-                            selectedFragment = new SettingsFragment();
+                            Intent intent = new Intent (getApplication(),SearchActivity.class);
+                            startActivity(intent);
                             break;
                         case R.id.nav_notif:
                             selectedFragment = new NotificationFragment();

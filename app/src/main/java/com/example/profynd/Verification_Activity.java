@@ -20,7 +20,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Verification_Activity extends AppCompatActivity {
 
-    ImageView backBtn;
     LottieAnimationView verificationAnimation;
     Button continueBtn;
     FirebaseUser user;

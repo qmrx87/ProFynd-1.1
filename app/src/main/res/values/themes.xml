@@ -21,6 +21,7 @@
         <item name="android:fontFamily">@font/coiny_font</item>
 
     </style >
+
     <style name="animation" >
         <item name="android:windowEnterAnimation">@anim/fade_in</item>
         <item name="android:windowExitAnimation">@anim/fade_out</item>
@@ -36,4 +37,13 @@
         <item name="android:font">@font/coiny_font</item>
         <item name="android:padding">16dp</item>
     </style>
+    <style name="Theme.MyTheme" parent="Theme.AppCompat.Light">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@color/PrimCol</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/SecondCol</item>
+        <!-- colorAccent is used as the default value for colorControlActivated,which is used to tint widgets -->
+        <item name="colorAccent">@color/PrimCol</item>
+    </style>
+
 </resources>

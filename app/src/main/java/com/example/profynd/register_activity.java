@@ -271,6 +271,7 @@ public class register_activity extends AppCompatActivity {
                                             userInfor.put("Location", localisation);
                                             userInfor.put("Uid", user.getUid());
                                             userInfor.put("Type", (account_type)?"Student":"Tutor");
+                                            userInfor.put("bio", "");
                                             userInfor.put("Reputation", 0);
                                             userInfor.put("ProfilePictureUrl", null);
 
@@ -326,7 +327,6 @@ public class register_activity extends AppCompatActivity {
         });
 
     }
-
     private boolean CheckExistingUser(String name) {
         //get all users
         fstore.collection("Users").whereEqualTo("Username", name)
@@ -347,9 +347,6 @@ public class register_activity extends AppCompatActivity {
         });
         return valid;
     }
-
-
-
     private void retrieveRestoreToken() {
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             Map<String, Object> userToken = new HashMap<>();
@@ -415,17 +412,11 @@ public class register_activity extends AppCompatActivity {
 
 
     }
-
-            private void askPermission() {
+    private void askPermission() {
                 ActivityCompat.requestPermissions(register_activity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             }
-
-
-
-
-
-        @Override
-        public void onRequestPermissionsResult ( int requestCode, @NonNull String[] permissions,
+            @Override
+            public void onRequestPermissionsResult ( int requestCode, @NonNull String[] permissions,
         @NonNull int[] grantResults) {
 
             if (requestCode == REQUEST_CODE) {

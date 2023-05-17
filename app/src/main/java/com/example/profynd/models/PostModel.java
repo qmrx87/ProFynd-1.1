@@ -8,8 +8,8 @@ import com.google.firebase.Timestamp;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 public class PostModel implements Serializable, Parcelable {
+
     private String publisher,Username, title,Formation_img ,body,postid,publisherPic,location;
     private Timestamp Date;
     private int demandsCount,Price, reportsCount;
