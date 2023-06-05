@@ -32,6 +32,8 @@
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ESI/PROJECT/LEARNING/ProFynd/app/src/main/res/layout/reg_layout.xml" value="0.264" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ESI/PROJECT/LEARNING/ProFynd/app/src/main/res/layout/splash.xml" value="0.264" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable-v24/bn_ic_home.xml" value="0.2125" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/actionbar.xml" value="0.173" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/answeractionbar.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/bn_ic_gift.xml" value="0.205" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/bn_ic_gift_notclicked.xml" value="0.1215" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/bn_ic_home.xml" value="0.1215" />
@@ -43,12 +45,21 @@
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/button_backround.xml" value="0.119" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/buttonloging_g.xml" value="0.168" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/charity_button_selector.xml" value="0.1215" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/custom_check_box.xml" value="0.173" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/custom_checkbox_background.xml" value="0.173" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/custom_checkbox_icon.xml" value="0.173" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/custom_chip_background.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/custom_progress_bar.xml" value="0.1215" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/dialog_background.xml" value="0.2315" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/edit_profile_bg.xml" value="0.173" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/edittxtshape.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/home_button_selector.xml" value="0.1215" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/ic_all.xml" value="0.2125" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/ic_cercle_xmark.xml" value="0.173" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/ic_email.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/ic_pencil.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/ic_post_menu.xml" value="0.2125" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/ic_reply.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/ic_search.xml" value="0.1215" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/item_selector.xml" value="0.119" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/lock.xml" value="0.168" />
@@ -56,24 +67,29 @@
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/notifbox.xml" value="0.2125" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/onboarding_indicator_active.xml" value="0.1215" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/onboarding_indicator_inactive.xml" value="0.2125" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/phone.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/play_button_selector.xml" value="0.1215" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/post_cardview_background.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/profile_buttons.xml" value="0.17" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/profilebtn.xml" value="0.173" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/userpic.xml" value="0.173" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/welcomepage1.xml" value="0.1215" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/welcomepage2.xml" value="0.1215" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/drawable/welcomepage3.xml" value="0.1215" />
-        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_add_post.xml" value="0.2" />
-        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.33101851851851855" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_add_post.xml" value="0.176" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.21008403361344538" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_changepassword.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_edit_profile.xml" value="0.2" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_forgotpassword1.xml" value="0.25" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_formation.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_help.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_log_reg.xml" value="0.1078125" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_onboarding_screen.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_onboarding_screens.xml" value="0.11041666666666666" />
-        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_registration_layout.xml" value="0.2" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_registration_layout.xml" value="0.4" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_seach_activty.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/activity_settings.xml" value="0.25" />
@@ -84,14 +100,18 @@
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/addformation_dialog.xml" value="0.301994301994302" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/cardview_post.xml" value="0.264" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/cardview_search_user.xml" value="0.25" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/custom_checkbox_background.xml" value="0.25" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/email_dialog.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/forgot_password.xml" value="0.1078125" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
-        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/fragment_search.xml" value="0.43795620437956206" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/fragment_search_user.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
-        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/fragment_tags_filter.xml" value="0.25" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/fragment_tags_filter.xml" value="0.1" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/item_container_onboarding.xml" value="0.11041666666666666" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/phone_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/request_dialog.xml" value="0.25" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/splash.xml" value="0.264" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/layout/welcomepage1.xml" value="0.11041666666666666" />
         <entry key="..\:/Users/ACER NITRO/OneDrive/Bureau/ProFynd-f92479826e2c9e041f7727d326ad4edfc9ffee75/app/src/main/res/menu/bottom_navigation.xml" value="0.25" />

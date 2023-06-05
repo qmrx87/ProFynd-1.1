@@ -100,7 +100,7 @@
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
         android:hint="+213"
-        app:startIconDrawable="@drawable/phone"
+        app:startIconDrawable="@drawable/ic_appel_telephonique"
 
 
 
@@ -113,6 +113,7 @@
             android:inputType="phone"
             android:autofillHints="phone"
             android:maxLength="10"
+
 
             />
 
@@ -127,7 +128,7 @@
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
         android:hint="Email"
-        app:startIconDrawable="@drawable/enveloppe_circle"
+        app:startIconDrawable="@drawable/ic_email"
         android:autofillHints="emailAddress"
 
         >
@@ -151,7 +152,7 @@
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
         android:hint="Password"
-        app:startIconDrawable="@drawable/img_2"
+        app:startIconDrawable="@drawable/ic_password"
         app:endIconMode="password_toggle"
         >
 

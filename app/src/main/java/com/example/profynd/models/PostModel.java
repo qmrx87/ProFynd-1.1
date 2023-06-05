@@ -10,14 +10,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 public class PostModel implements Serializable, Parcelable {
 
-    private String publisher,Username, title,Formation_img ,body,postid,publisherPic,location;
+    private String publisher,Username, title,Formation_img ,body,postid, PublisherPic,location;
     private Timestamp Date;
-    private int demandsCount,Price, reportsCount;
+    private int demandsCount,Price, reportsCount,Places;
     private ArrayList<String> tags, demands;
 
 
 
-    public PostModel(String publisher, String username, String title, String body,int price, String postid,String location, Timestamp date, String publisherPic, String formation_img, int placesCount, ArrayList<String> demands, ArrayList<String> tags) {
+    public PostModel(String publisher, String username, String title, String body,int price,int Places, String postid,String location, Timestamp date, String publisherPic, String formation_img, int placesCount, ArrayList<String> demands, ArrayList<String> tags) {
         this.publisher = publisher;
         Username = username;
         this.title = title;
@@ -25,8 +25,9 @@ public class PostModel implements Serializable, Parcelable {
         this.postid = postid;
         this.location=location;
         this.Price=price;
+        this.Places=Places;
         Date = date;
-        this.publisherPic = publisherPic;
+        this.PublisherPic = publisherPic;
         this.demandsCount = demands.size();
         this.Formation_img = formation_img;
         this.demands=demands;
@@ -46,10 +47,22 @@ public class PostModel implements Serializable, Parcelable {
         this.body = body;
         this.postid = postid;
         Date = date;
-        this.publisherPic = publisherPic;
+        this.PublisherPic = publisherPic;
         this.reportsCount = reportsCount;
         this.tags = tags;
         this.demands = demands;
+    }
+
+    public void setPostid(String postid) {
+        this.postid = postid;
+    }
+
+    public int getPlaces() {
+        return Places;
+    }
+
+    public void setPlaces(int places) {
+        Places = places;
     }
 
     public String ConvertDate() {
@@ -64,7 +77,7 @@ public class PostModel implements Serializable, Parcelable {
         title = in.readString();
         body = in.readString();
         postid = in.readString();
-        publisherPic = in.readString();
+        PublisherPic = in.readString();
         Date = in.readParcelable(Timestamp.class.getClassLoader());
         reportsCount = in.readInt();
         tags = in.createStringArrayList();
@@ -104,11 +117,11 @@ public class PostModel implements Serializable, Parcelable {
     }
 
     public String getPublisherPic() {
-        return publisherPic;
+        return PublisherPic;
     }
 
     public void setPublisherPic(String publisherPic) {
-        this.publisherPic = publisherPic;
+        this.PublisherPic = publisherPic;
     }
 
     public PostModel() {
@@ -210,7 +223,7 @@ public class PostModel implements Serializable, Parcelable {
         parcel.writeString(title);
         parcel.writeString(body);
         parcel.writeString(postid);
-        parcel.writeString(publisherPic);
+        parcel.writeString(PublisherPic);
         parcel.writeParcelable(Date, i);
         parcel.writeInt(reportsCount);
         parcel.writeStringList(tags);

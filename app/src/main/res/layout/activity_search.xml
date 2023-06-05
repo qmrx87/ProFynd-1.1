@@ -15,7 +15,7 @@
         android:layout_marginRight="15dp"
         android:layout_gravity="right"
         android:background="@drawable/button_backround"
-        android:src="@drawable/ic_search" />
+        android:src="@drawable/ic_reply" />
 
     <FrameLayout
         android:layout_width="match_parent"

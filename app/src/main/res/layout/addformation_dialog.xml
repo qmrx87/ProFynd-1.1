@@ -32,13 +32,17 @@
                 android:id="@+id/individual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Individual"/>
+                android:text="Individual"
+
+                />
 
             <RadioButton
                 android:id="@+id/collective"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Collective"/>
+                android:text="Collective"
+
+                />
 
         </RadioGroup>
 

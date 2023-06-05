@@ -174,7 +174,6 @@ public class SettingsActivity extends AppCompatActivity {
 
                         settingsUsername.setText("@"+doc.get("Username").toString());
                         settingsEmail.setText(doc.get("Email").toString());
-                        securitySwitch.setChecked(Boolean.TRUE.equals(doc.getBoolean("Security")));
                     }
                     progressBar.setVisibility(View.GONE);
                     scrollView.setVisibility(VISIBLE);

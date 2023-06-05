@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingsActivity"
-    android:background="@color/SecondCol">
+    android:background="@android:color/transparent">
 
     <ImageButton
         android:id="@+id/settingsBackBtn"
@@ -16,12 +16,13 @@
         android:src="@drawable/ic_arrow" />
 
     <TextView
+        style="@style/Text3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:text="Settings"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <ProgressBar
         android:id="@+id/settingsProgressBar"
@@ -41,6 +42,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
 
             <LinearLayout
                 android:id="@+id/settingsInfoLinearLayout"
@@ -84,15 +86,15 @@
 
             </LinearLayout>
 
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/settingsEditProfileBtn"
+                style="@style/Text4"
                 android:layout_width="150dp"
                 android:layout_height="45dp"
                 android:layout_below="@+id/settingsInfoLinearLayout"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/googlebtn"
+                android:background="@drawable/button_backround"
                 android:text="Edit profile" />
 
             <LinearLayout
@@ -122,8 +124,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Notifications"
+
                             android:textColor="@color/black"
                             android:textStyle="bold"
+                            android:fontFamily="@font/poppins_sb"
                             android:textSize="20sp"
                             />
 
@@ -181,6 +185,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:text="Email"
+                            android:fontFamily="@font/poppins_sb"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -201,7 +206,7 @@
                                 android:id="@+id/settingsEmail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="aa.mokadem@esi-sba.dz"
+                                android:text="y.daitdehane@sba.dz"
                                 android:layout_marginStart="10dp"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -228,6 +233,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:text="Login"
+                            android:fontFamily="@font/poppins_sb"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -310,6 +316,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Help"
+                            android:fontFamily="@font/poppins_sb"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />

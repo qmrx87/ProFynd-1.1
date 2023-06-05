@@ -139,8 +139,8 @@ public class BottomNavigationActivity extends AppCompatActivity  {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
-    private BottomNavigationView.OnItemSelectedListener navListener =
-            new BottomNavigationView.OnItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
@@ -149,21 +149,29 @@ public class BottomNavigationActivity extends AppCompatActivity  {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_sr:
-                            Intent intent = new Intent (getApplication(),SearchActivity.class);
+                            Intent intent = new Intent(getApplication(), SearchActivity.class);
                             startActivity(intent);
-                            break;
-                        case R.id.nav_notif:
-                            selectedFragment = new NotificationFragment();
-                            break;
+                            return true;  // Return true here to prevent executing the fragment transaction code
+
                         case R.id.nav_profile:
                             selectedFragment = new ProfileFragment();
                             break;
+                        case R.id.nav_set:
+                            Intent intentt = new Intent(BottomNavigationActivity.this, SettingsActivity.class);
+                            startActivity(intentt);
+                            return true;  // Return true here to prevent executing the fragment transaction code
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+
+                    // Only execute the fragment transaction code if a fragment is selected
+                    if (selectedFragment != null) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                selectedFragment).commit();
+                    }
+
                     return true;
                 }
             };
+
 
 
 

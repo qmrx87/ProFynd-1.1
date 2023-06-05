@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class UserModel implements Serializable  {
-    private String email;
+    private String Email;
     private ArrayList<String> feed;
     private String location;
-    private String mobile;
+    private String Mobile;
     private String Name;
     private String profilePictureUrl;
     private int reputation;
     private String type;
-    private String uid;
+    private String Uid;
     private String Username;
     private String bio;
     private boolean isAdmin;
@@ -22,27 +22,33 @@ public class UserModel implements Serializable  {
     }
 
     public UserModel(String email, ArrayList<String> feed, String location, String mobile, String name, String profilePictureUrl, int reputation, String type, String uid, String username,String bio, boolean isAdmin) {
-        this.email = email;
+        this.Email = email;
         this.feed = feed;
         this.location = location;
-        this.mobile = mobile;
+        this.Mobile = mobile;
         this.Name = name;
         this.profilePictureUrl = profilePictureUrl;
         this.reputation = reputation;
         this.type = type;
-        this.uid = uid;
+        this.Uid = uid;
         this.Username = username;
         this.bio=bio;
         this.isAdmin = isAdmin;
     }
-
+    public UserModel(String name, String username, String profilePictureUrl, String uid, String bio) {
+        Name = name;
+        Username = username;
+        this.profilePictureUrl = profilePictureUrl;
+        this.Uid = uid;
+        this.bio = bio;
+    }
     // Getters and setters
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     public ArrayList<String> getFeed() {
@@ -62,11 +68,11 @@ public class UserModel implements Serializable  {
     }
 
     public String getMobile() {
-        return mobile;
+        return Mobile;
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile;
+        this.Mobile = mobile;
     }
 
     public String getName() {
@@ -102,7 +108,7 @@ public class UserModel implements Serializable  {
     }
 
     public String getUid() {
-        return uid;
+        return Uid;
     }
 
     public String getBio() {
@@ -114,7 +120,7 @@ public class UserModel implements Serializable  {
     }
 
     public void setUid(String uid) {
-        this.uid = uid;
+        this.Uid = uid;
     }
 
     public String getUsername() {

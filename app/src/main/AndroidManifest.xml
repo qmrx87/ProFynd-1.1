@@ -16,12 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProFynd">
         <activity
+            android:name=".FormationActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserProfileActivity"
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
             android:exported="false" />
-
         <activity
             android:name=".HelpActivity"
             android:exported="false" />

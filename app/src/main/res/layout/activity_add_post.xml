@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Add Formation"
         android:textSize="20sp"
+        style="@style/Text3"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +82,12 @@
                 android:paddingTop="10dp"
                 android:paddingRight="15dp"
                 android:paddingBottom="10dp" />
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    >
                 <EditText
                     android:id="@+id/priceEditTxt"
                     android:layout_width="wrap_content"
@@ -97,8 +103,17 @@
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
                     android:paddingBottom="10dp" />
+                <CheckBox
+                    android:id="@+id/free"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@drawable/custom_check_box"
+                    android:fontFamily="@font/poppins_reg"
+                    android:text="Free"
+                    android:layout_marginLeft="50dp"
+                    ></CheckBox>
 
-
+                </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -122,41 +137,39 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                app:singleSelection="true"
                 app:singleLine="true">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Primary_School"
                     android:layout_width="wrap_content"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    style="@style/CustomChipStyle"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginLeft="3dp"
                     android:text="Primary School"
-                    app:chipBackgroundColor="@color/white"
+
                     app:chipStrokeColor="@color/black"
-                    app:chipStrokeWidth="1dp" />
+                    />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/Middle_School"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="0dp"
                     android:text="Middle School"
-                    app:chipBackgroundColor="@color/white"
-                    app:chipStrokeColor="@color/black"
-                    app:chipStrokeWidth="1dp" />
+
+                     />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/High_School"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="0dp"
                     android:text="High School"
-                    app:chipBackgroundColor="@color/white"
-                    app:chipStrokeColor="@color/black"
-                    app:chipStrokeWidth="1dp" />
+
+                     />
 
             </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
@@ -174,84 +187,73 @@
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/healthCG"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    app:singleSelection="true"
+                    android:layout_marginLeft="2dp"
+                    >
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Programming"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Programming"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                         />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/English"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="English"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                        />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Security"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Security"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                       />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Networking"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Networking"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                         />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/ui_ux"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="UI/UX"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                        />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Frensh"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Frensh"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                         />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Spain"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Spain"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                        />
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
 
@@ -269,62 +271,55 @@
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/ilnnesCG"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    app:singleSelection="true"
+                    android:layout_marginLeft="2dp"
+                    >
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Mathematics"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Mathematics"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                         />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Physics"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Physics"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                        />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Science"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Science"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                         />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/Languages"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Languages"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                         />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/other"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        style="@style/CustomChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:text="Other"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="@color/black"
-                        app:chipStrokeWidth="1dp" />
+                       />
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
         </LinearLayout>

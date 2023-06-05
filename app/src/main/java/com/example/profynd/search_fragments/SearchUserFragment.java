@@ -34,9 +34,11 @@ public class SearchUserFragment extends Fragment implements SearchAdapter.OnItem
     View parentHolder;
     ArrayList<UserModel> usersArrayList;
     SearchAdapter mAdapter;
+
     FirebaseFirestore db ;
     SearchView searchView;
     private ImageButton backBtn;
+    private ImageButton sbtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,16 +57,17 @@ public class SearchUserFragment extends Fragment implements SearchAdapter.OnItem
 
         mAdapter = new SearchAdapter(getActivity(), usersArrayList, this);
         recyclerView1.setAdapter(mAdapter);
-
+        sbtn=container.findViewById(R.id.container_searchBtn);
         RxSearchView.queryTextChanges(searchView)
                 .debounce(500, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(charSequence -> {
-                    String s= charSequence.toString().trim().toLowerCase();
+                    String s = charSequence.toString().trim().toLowerCase();
                     usersArrayList.clear();
-                    if(s.length()<2){
+                    if (s.length() == 0) {
+
                         mAdapter.notifyDataSetChanged();
-                    }else {
+                    } else if (s.length() >= 1) {
                         EventChangeListener(s);
                     }
                 });
@@ -78,6 +81,8 @@ public class SearchUserFragment extends Fragment implements SearchAdapter.OnItem
                 fragmentTransaction.replace(R.id.searchContainer, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+                sbtn.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -97,14 +102,16 @@ public class SearchUserFragment extends Fragment implements SearchAdapter.OnItem
                         usersArrayList.add(dc.toObject(UserModel.class));
                     }
                 }
+                mAdapter.notifyDataSetChanged();
+
             }
-            mAdapter.notifyDataSetChanged();
         });
         usersArrayList.clear();
     }
 
     @Override
     public void onItemClick(int position) {
+
 
     }
 }

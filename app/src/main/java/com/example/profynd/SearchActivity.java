@@ -25,7 +25,7 @@ public class SearchActivity extends AppCompatActivity{
 
     private void BeginTagSearch(){
         sbtn = findViewById(R.id.container_searchBtn);
-
+        sbtn.setVisibility(View.VISIBLE);
         getSupportFragmentManager().beginTransaction().replace(R.id.searchContainer,
                 new TagsFilterFragment()).commit();
 
@@ -34,8 +34,11 @@ public class SearchActivity extends AppCompatActivity{
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.searchContainer,
                         new SearchUserFragment()).commit();
-
-            }
+                if(sbtn.getVisibility()==View.VISIBLE) {
+                    sbtn.setVisibility(View.INVISIBLE);
+                }else{
+                sbtn.setVisibility(View.VISIBLE);
+            }}
         });
     }
 }

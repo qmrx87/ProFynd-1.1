@@ -2,13 +2,16 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/formation_post"
     android:clickable="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
+    app:cardCornerRadius="14dp"
+    app:cardMaxElevation="3dp"
+    app:cardElevation="3dp"
+    android:layout_marginLeft="17dp"
+    android:layout_marginRight="17dp"
     android:layout_marginBottom="15dp"
-    android:elevation="4dp">
+    android:elevation="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,13 +21,13 @@
         <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/SecondCol"/>
+            android:layout_height="185dp"
+            android:background="@color/white"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="14dp"
+            android:paddingLeft="8dp"
             android:orientation="horizontal"
             android:background="@color/white">
 
@@ -37,23 +40,25 @@
 
                 <TextView
                     android:id="@+id/formation_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_sb"
-
                     android:text="Formation"
                     android:textColor="@color/PrimCol"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                />
 
                 <TextView
                     android:id="@+id/usernamep"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Teacher"
                     android:textSize="16dp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_reg"/>
+                    android:fontFamily="@font/poppins_sb"/>
             </LinearLayout>
 
 

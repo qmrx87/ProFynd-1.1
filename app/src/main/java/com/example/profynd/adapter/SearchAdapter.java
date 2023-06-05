@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,10 +45,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.UsersViewH
 
     @Override
     public void onBindViewHolder(@NonNull UsersViewHolder holder, int position) {
+        UserModel user = userModelArrayList.get(position);
 
-        holder.Name.setText(userModelArrayList.get(position).getName());
-        holder.Username.setText("@"+userModelArrayList.get(position).getUsername());
-        Glide.with(this.context).load(userModelArrayList.get(position).getProfilePictureUrl()).into(holder.profilePictureUrl);
+        holder.Name.setText(user.getName());
+        holder.Username.setText("@"+user.getUsername());
+        Glide.with(this.context).load(user.getProfilePictureUrl()).into(holder.profilePictureUrl);
 
     }
 
@@ -76,11 +78,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.UsersViewH
                     UserModel user = userModels.get(getAbsoluteAdapterPosition());
                     if (user.getUid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                     {
-                        //go to user fragment
-                        Toast.makeText(view.getContext().getApplicationContext(), "opening profile", Toast.LENGTH_SHORT).show();
+                            //go to user fragment
                     }
                     else
                     {
+
                         Intent intent = new Intent(view.getContext(), UserProfileActivity.class);
                         intent.putExtra("Tag", (Serializable) user);
                         view.getContext().startActivity(intent);

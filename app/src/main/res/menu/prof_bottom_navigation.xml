@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <item
+        android:id="@+id/nav_set"
+        android:title="Settings"
+        android:icon="@drawable/settings"/>
     <item
         android:id="@+id/nav_add"
         android:title="Create"
         android:icon="@drawable/create"/>
-    <item
-        android:id="@+id/nav_sr"
-        android:title="Settings"
-        android:icon="@drawable/settings"/>
-    <item
-        android:id="@+id/nav_notif"
-        android:icon="@drawable/ic_bell"
-        android:title="Norifications"/>
+
     <item
         android:id="@+id/nav_profile"
         android:title="Profile"

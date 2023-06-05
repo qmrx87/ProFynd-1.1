@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -49,8 +50,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,7 +73,9 @@ public class AddPostActivity extends AppCompatActivity {
     RadioGroup radioGroup ;
     public String title,priceString,body;
     ProgressBar progressbarokay;
-    int places, price ;
+    private CheckBox free;
+    int places ;
+    private Integer price;
 
     private FirebaseFirestore fstore;
     private DocumentReference teacherRef;
@@ -103,6 +109,7 @@ public class AddPostActivity extends AppCompatActivity {
         returnButton = findViewById(R.id.returnBtn);
         postButton = findViewById(R.id.postBtn);
         profileImg = findViewById(R.id.profileImg);
+        free=findViewById(R.id.free);
         InitChips();
         loader = new ProgressDialog(this);
         dialog = new Dialog(AddPostActivity.this);
@@ -140,6 +147,25 @@ public class AddPostActivity extends AppCompatActivity {
                 }
             }
         });
+        free.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    priceEditTxt.setEnabled(false);
+                    priceEditTxt.setText("Free");
+                } else {
+                    priceEditTxt.setEnabled(true);
+                    priceEditTxt.setText("");
+                    priceEditTxt.setHint("Formation Price");
+                }
+            }
+        });
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         SetCheckedTags();
@@ -160,21 +186,28 @@ public class AddPostActivity extends AppCompatActivity {
                     titleEditTxt.setError("Title is required!");
                     titleEditTxt.requestFocus();
                     return;
-                } else if (TextUtils.isEmpty(priceString)) {
-                    priceEditTxt.setError("Price is required!");
-                    priceEditTxt.requestFocus();
-                    return;
-                } else if (!TextUtils.isDigitsOnly(priceString)) {
-                    priceEditTxt.setError("Price must be a number!");
-                    priceEditTxt.requestFocus();
-                    return;
+                } else if(!free.isChecked()){
+
+                    if(TextUtils.isEmpty(priceString)){
+                        priceEditTxt.setError("Price is required!");
+                        priceEditTxt.requestFocus();
+                        return;
+                    }
+                    if (!TextUtils.isDigitsOnly(priceString)) {
+                        priceEditTxt.setError("Price must be a number!");
+                        priceEditTxt.requestFocus();
+                        return;
+
+                }else{
+                        price = Integer.parseInt(priceString);
+
+                    }
                 } else if (TextUtils.isEmpty(body)) {
                     bodyEditTxt.setError("Body is required!");
                     bodyEditTxt.requestFocus();
                     return;
                 }
 
-                 price = Integer.parseInt(priceString);
                 dialog.setContentView(R.layout.addformation_dialog);
                 dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.dialog_background));
                 dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -224,7 +257,7 @@ public class AddPostActivity extends AppCompatActivity {
 
                             } else {
                                 progressbarokay.setVisibility(View.VISIBLE);
-                                performValidation();
+                                performValidation("");
 
                             }
                         } else if (collective.isChecked()) {
@@ -244,7 +277,7 @@ public class AddPostActivity extends AppCompatActivity {
                                     uploadImageToFirestore(mImageUri);
                                 } else {
                                     progressbarokay.setVisibility(View.VISIBLE);
-                                    performValidation();
+                                    performValidation("");
                                 }
                             }
                         }
@@ -279,7 +312,6 @@ public class AddPostActivity extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri selectedImageUri = data.getData();
-
             // Launch the image cropper
             CropImage.activity(selectedImageUri)
                     .setAspectRatio(16, 9)  // Set your desired custom ratio here
@@ -292,8 +324,10 @@ public class AddPostActivity extends AppCompatActivity {
                 // Get the cropped image URI
                 Uri croppedImageUri = result.getUri();
 
+
                 // Upload the cropped image to Firestore
                 uploadImageToFirestore(croppedImageUri);
+                addimage.setText("img_05062022");
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 // Handle crop error
                 Exception error = result.getError();
@@ -314,9 +348,15 @@ public class AddPostActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         imageUrl = uri.toString();
-                        Log.d("AddPostActivity", "Image URL: " + imageUrl);
-                        performValidation();
-                        // ...
+                        okay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                performValidation(imageUrl);
+                            }
+                        });
+
+
+
                     }
                 });
             }
@@ -331,22 +371,25 @@ public class AddPostActivity extends AppCompatActivity {
 
 
 
-    DocumentReference ref = FirebaseFirestore.getInstance().collection("Posts").document();
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    Date date = new Date();
-    private void performValidation()
-    {
 
+    DocumentReference ref = FirebaseFirestore.getInstance().collection("Posts").document();
+
+    private void performValidation(String img)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        java.util.Calendar c = Calendar.getInstance();
+        c.setTime(date);
 
 
         startLoader();
         String postId = ref.getId();
         HashMap<String, Object> data = new HashMap<>();
         data.put("Date", date);
-        data.put("Formation_img", imageUrl);
+        data.put("Formation_img", img);
         data.put("Name", tutorName);
         data.put("Places", places);
-        data.put("Price",price);
+        data.put("Price",(free.isChecked())?price:0);
         data.put("Username", tutorUsername);
         data.put("body", body);
         data.put("demands", null);
@@ -363,13 +406,8 @@ public class AddPostActivity extends AppCompatActivity {
 
 
 
-        HashMap<String, Object> postData = new HashMap<>();
-        data.put("Date", date);
-        postData.put("postid", postId);
-        postData.put("Formation_img",imageUrl);
-        data.put("demands", null);
-        postData.put("Price",price);
-        postData.put("demandsCount", 0);
+
+
         CollectionReference formationsRef = FirebaseFirestore.getInstance()
                 .collection("Users").document(onlineUserId).collection("Formations");
 
@@ -379,7 +417,7 @@ public class AddPostActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
-                    formationsRef.add(postData).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    formationsRef.add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
                             Toast.makeText(AddPostActivity.this, "Formation posted successfully", Toast.LENGTH_SHORT).show();

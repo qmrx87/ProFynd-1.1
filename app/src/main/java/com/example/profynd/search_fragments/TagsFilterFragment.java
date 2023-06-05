@@ -50,7 +50,6 @@ public class TagsFilterFragment extends Fragment implements SearchOnItemClick {
     private SwipeRefreshLayout refresh;
     private LinearLayout emptyTagSearch;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +63,6 @@ public class TagsFilterFragment extends Fragment implements SearchOnItemClick {
         progressBar = parentHolder.findViewById(R.id.tagsProgressBar);
         recyclerView = parentHolder.findViewById(R.id.searchTagsRecview);
         emptyTagSearch = parentHolder.findViewById(R.id.emptyTagSearch);
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -38,11 +38,12 @@ public class SearchRecommendationAdapter extends RecyclerView.Adapter<SearchReco
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder1 holder, int position) {
-        Glide.with(context).load(FormationsHolder.get(position).getPublisherPic()).into(holder.img);
+        Glide.with(context).load(FormationsHolder.get(position).getFormation_img()).into(holder.img);
         holder.Title.setText(FormationsHolder.get(position).getTitle());
         holder.Username.setText("@"+ FormationsHolder.get(position).getUsername());
         holder.Location.setText(FormationsHolder.get(position).getLocation());
         holder.Price.setText(Integer.toString(FormationsHolder.get(position).getPrice()));
+
     }
 
     @Override

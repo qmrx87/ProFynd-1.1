@@ -167,24 +167,20 @@ public class EditProfileActivity extends AppCompatActivity {
         df.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
-                    if (doc.exists())
-                    {
-                        Map<String,Object> hashMap = new HashMap(); //represents key, value
-                        hashMap.put("Name", name1.getText().toString()+" "+name2.getText().toString());
+                    if (doc.exists()) {
+                        Map<String, Object> hashMap = new HashMap<>(); // represents key, value
+                        hashMap.put("Name", name1.getText().toString() + " " + name2.getText().toString());
                         hashMap.put("bio", bio.getText().toString());
                         StorageReference fileReference = storageReference.child(user.getUid());
-                        if(resultUri!=null) {
+                        if (resultUri != null) {
                             UploadImage(fileReference, hashMap, df);
-                        }
-                        else
-                        {
+
+                        } else {
                             df.update(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    UpdateNameInPosts();
                                     View parentLayout = findViewById(android.R.id.content);
                                     final Snackbar snackbar = Snackbar.make(parentLayout, "Information updated", Snackbar.LENGTH_INDEFINITE)
                                             .setAction("RETURN", new View.OnClickListener() {
@@ -195,17 +191,27 @@ public class EditProfileActivity extends AppCompatActivity {
                                                 }
                                             });
                                     snackbar.show();
-                                    infoUploaded= true;
-                                    loader.dismiss();
+                                    infoUploaded = true;
+                                    UpdateNameInPosts();
+                                    loader.dismiss(); // Dismiss the loader here
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Failure(e);
+                                    loader.dismiss(); // Dismiss the loader here as well
                                 }
                             });
                         }
+                    } else {
+                        loader.dismiss(); // Dismiss the loader if the task is not successful
                     }
                 }
-                else loader.dismiss();
             }
         });
     }
+
+
 
     private void DisableEverything()
     {
@@ -256,6 +262,19 @@ public class EditProfileActivity extends AppCompatActivity {
                             @RequiresApi(api = Build.VERSION_CODES.N)
                             @Override
                             public void onSuccess(Void unused) {
+                                View parentLayout = findViewById(android.R.id.content);
+                                final Snackbar snackbar = Snackbar.make(parentLayout, "Information updated", Snackbar.LENGTH_INDEFINITE)
+                                        .setAction("RETURN", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                startActivity(new Intent(EditProfileActivity.this, SettingsActivity.class));
+                                                finish();
+                                            }
+                                        });
+                                UpdateNameInPosts();
+                                snackbar.show();
+                                infoUploaded = true;
+                                loader.dismiss(); // Dismiss the loader here
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -281,54 +300,8 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
 
-//    private void UpdatePictureInPosts()
-//    {
-//        fstore.collection("Posts").whereEqualTo("publisher", user.getUid())
-//                .get() //update picture in posts
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            infoUploaded= true;
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                DocumentReference pr = document.getReference();
-//                                Map<String,Object> hm = new HashMap();
-//                                hm.put("publisherPic", imageUrl);
-//                                pr.update(hm).addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Failure(e);
-//                                    }
-//                                }).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                    @Override
-//                                    public void onSuccess(Void unused) {
-//                                        loader.dismiss();
-//                                        View parentLayout = findViewById(android.R.id.content);
-//                                        final Snackbar snackbar = Snackbar.make(parentLayout, "Information updated", Snackbar.LENGTH_LONG)
-//                                                .setAction("RETURN", new View.OnClickListener() {
-//                                                    @Override
-//                                                    public void onClick(View view) {
-//                                                        startActivity(new Intent(EditProfileActivity.this, SettingsActivity.class));
-//                                                        finish();
-//                                                    }
-//                                                });
-//                                        snackbar.show();
-//                                    }
-//                                });
-//                            }
-//                        }
-//                        else loader.dismiss();
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Failure(e);
-//            }
-//        });
-//    }
 
-    private void Failure(Exception e)
-    {
+    private void Failure(Exception e) {
         Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         loader.dismiss();
     }
@@ -396,6 +369,7 @@ public class EditProfileActivity extends AppCompatActivity {
         loader.setCanceledOnTouchOutside(false);
         loader.show();
     }
+
 
 
 

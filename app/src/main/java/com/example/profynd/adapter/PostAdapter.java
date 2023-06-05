@@ -14,17 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.profynd.R;
-import com.example.profynd.interfaces.PostsOnItemClickListner;
 import com.example.profynd.models.PostModel;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -51,17 +46,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_post,parent,false);
-        return new myviewholder(view , mListner, PostsHolder, this);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_post, parent, false);
+        return new myviewholder(view, mListner, PostsHolder);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        Glide.with(context).load(PostsHolder.get(position).getPublisherPic()).into(holder.img);
+        Glide.with(context).load(PostsHolder.get(position).getFormation_img()).into(holder.img);
         holder.Title.setText(PostsHolder.get(position).getTitle());
         holder.Username.setText("@"+PostsHolder.get(position).getUsername());
         holder.Location.setText(PostsHolder.get(position).getLocation());
-        holder.Price.setText(PostsHolder.get(position).getPrice()+"DA");
+        if (PostsHolder.get(position).getPrice() != 0) {
+            holder.Price.setText(PostsHolder.get(position).getPrice()+"DA");
+        }else{
+            holder.Price.setText("Free");
+        }
     }
 
 
@@ -75,7 +75,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
 
     public static class myviewholder extends RecyclerView.ViewHolder {
 
-        LottieAnimationView Demand;
+
         ImageView img;
         TextView Title,Username,Price,Location;
 
@@ -83,7 +83,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
         private FirebaseUser user;
         private FirebaseFirestore fstore;
 
-        public myviewholder (@NonNull View itemView , PostsOnItemClickListner listner , ArrayList<PostModel> postHolder, PostAdapter adapter){
+        public myviewholder (@NonNull View itemView , PostsOnItemClickListner listner , ArrayList<PostModel> postHolder){
             super(itemView);
             img = itemView.findViewById(R.id.img);
             Title = itemView.findViewById(R.id.formation_title);
@@ -96,41 +96,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
             user = auth.getCurrentUser();
 
 
-           /* likeBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listner != null){
-                        int position = getAbsoluteAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listner.onLikeClick(position,likeBtn, Likes, false);
-                        }
-                    }
-                }
-            });*/
+
+
+
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (listner != null){
+                    if (listner != null) {
                         int position = getAbsoluteAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listner.onItemClick(position);
-                        }
-                    }
-                }
-            });
-
-
-
-
-
-            itemView.findViewById(R.id.img).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listner != null){
-                        int position = getAbsoluteAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listner.onPictureClick(position);
+                        if (position != RecyclerView.NO_POSITION) {
+                            PostModel postModel = postHolder.get(position);
+                            listner.onItemClick(position, postModel);
                         }
                     }
                 }
@@ -155,8 +133,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
                             PostModel postModel = postHolder.get(position);
                             if (menuItem.getTitle().equals("Delete")) {
                                 postHolder.remove(position);
-                                adapter.notifyItemRemoved(position);
-                                //DeleteLikes(postModel, "Likes");
+                               // adapter.notifyItemRemoved(position);
                                 DeleteFromFeed(postModel);
                                 Toast.makeText(view.getContext(), "Delete", Toast.LENGTH_SHORT).show();
                                 b = true;
@@ -192,5 +169,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.myviewholder> 
         }
 
 
+    }
+    public interface PostsOnItemClickListner {
+        void onItemClick(int position, PostModel postModel);
     }
 }
