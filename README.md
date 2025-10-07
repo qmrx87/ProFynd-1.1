@@ -1,6 +1,8 @@
 # ProFynd
 
 ProFynd is a mobile application designed to connect students with nearby tutors based on location, subject expertise, ratings, and availability. Developed as a multidisciplinary project by second-year preparatory class students at École Supérieure en Informatique 8 Mai 1945 (ESI-SBA), Sidi Bel-Abbès, Algeria, the app aims to streamline the tutor-student matchmaking process, enhancing academic support through personalized recommendations and efficient communication.
+![App Presentation](https://github.com/ADHAYA-Technos/.github/blob/main/ProFynd Mockups.png)
+  - **Description**: App Presentation
 
 ## Overview
 
